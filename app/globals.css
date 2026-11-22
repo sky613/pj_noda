@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* 색: 따뜻한 오프화이트 배경, 먹색 텍스트, 포인트 컬러 1개 */
+:root {
+  --color-bg: #f6f1e8;
+  --color-bg-soft: #ede6d9;
+  --color-ink: #2a2724;
+  --color-ink-soft: #6f6861;
+  --color-line: #d9d1c4;
+  --color-accent: #9c5a3c;
+  --color-accent-ink: #f6f1e8;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1d1b18;
+    --color-bg-soft: #262320;
+    --color-ink: #ece6dc;
+    --color-ink-soft: #a39b91;
+    --color-line: #3a3630;
+    --color-accent: #c98a6b;
+    --color-accent-ink: #1d1b18;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-bg-soft: var(--color-bg-soft);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-line: var(--color-line);
+  --color-accent: var(--color-accent);
+  --color-accent-ink: var(--color-accent-ink);
+  --font-sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo", sans-serif;
+  --animate-fade-in: fade-in 500ms ease-out both;
+  --animate-empty-out: empty-out 2500ms ease-in forwards;
+
+  /* transform을 쓰지 않는다: 조상 transform은 fixed 요소(상담 연락처 바)의 기준을 바꾼다 */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes empty-out {
+    0%   { opacity: 1; filter: blur(0); }
+    100% { opacity: 0; filter: blur(6px); }
+  }
+}
+
+html { background: var(--color-bg); }
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
